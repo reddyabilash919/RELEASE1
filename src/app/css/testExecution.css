@@ -1,0 +1,219 @@
+div.j {
+    background-color: lightgrey;
+    width: 50px;
+    border: 2px solid green;
+    padding: 2px;
+    margin: 2px;
+}
+h1 {
+    text-align: center;
+}
+     div.h {
+    float: center;
+  padding : 20px;
+      }
+
+      
+      div.g {
+    float: right;
+      }
+    
+
+      .border{
+        border: 1px solid black;
+        height:400px;
+        width:auto;
+        overflow-y:auto;
+        background-color:#f4f7f8;
+        }
+
+/* 
+      div.d {
+          position: absolute;
+          left :0%;
+          width: 20%;
+          height: 450px;
+        } */
+        /* div.a {
+            position: relative;
+            left : 273px;
+            width: 80%;
+            height: 450px;
+            border: 3px solid black;
+            
+        } */
+     /*   th.clicked:active{
+    background-color: yellow;
+
+        }*/
+      
+        body {
+              width: 100%;
+             }
+
+        /* table {
+             font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+              } */
+
+          th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;            
+              width: 900px;
+               }  
+
+          /*th:hover {
+            background-color:  green;
+          }*/
+
+          th.active {
+            width: 2000px;
+          }
+
+ .button {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 13px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+/*
+.button1 {background-color: #008CBA;margin-left: 100px} / Blue /
+.button2 {   
+             background-color: #f44336;margin-left: 100px} / Red / 
+.button3 {background-color: #555555;margin-left: 100px} / Black /
+ */
+ /* div.j {
+    background-color: lightgrey;
+    width: 50px;
+    border: 2px solid green;
+    padding: 2px;
+    margin: 2px;
+}
+h1 {
+    text-align: center;
+}
+     div.h {
+    float: center;
+  padding : 20px;
+      }
+      div.g {
+    float: right;
+      }
+    
+        div.d {
+          position: absolute;
+          left :0%;
+          width: 188px;
+          height: 300px;
+          border : 3px solid black;
+        }
+        div.a {
+            position: relative;
+            left : 187px;
+            width: 1000px;
+            height: 300px;
+            border: 3px solid black;
+            
+        }
+
+      
+        body {
+            background-color: cyan;
+             }
+
+        table {
+             font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+              }
+
+          th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+               }  
+
+th.active:{
+  background-color: lightgrey;
+
+}
+
+ .button {
+    background-color: #4CAF50; / Green /
+  /*  border: none;
+    color: white;
+    padding: 13px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button1 {background-color: #008CBA;} 
+.button2 {   
+             background-color: #f44336;} 
+.button3 {background-color: #555555;} */
+
+
+
+table.scroll {
+     /* width: 100%; */
+     border-collapse: collapse;
+    border-spacing: 100%;
+    border: 1px solid black;
+    width:80%;
+   
+}
+
+table.scroll tbody,
+table.scroll thead { display: block; }
+
+thead tr th { 
+    height: 50px;
+    line-height: 30px;
+    /* width:16%; */
+     text-align: left; 
+}
+
+table.scroll tbody {
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: auto;
+    /* width:100%; */
+   
+}
+
+td {
+    line-height: 35px;  
+}
+
+
+ .loader {
+ border: 10px solid black;
+  border-radius: 50%;
+  border-top: 10px solid green;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+0% { -webkit-transform: rotate(0deg); }
+100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}

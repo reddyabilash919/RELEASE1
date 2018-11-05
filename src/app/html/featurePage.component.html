@@ -1,0 +1,12 @@
+
+
+<div style="margin-top: 70px;margin-left: 300px;font-size: 20px;">
+	<select [(ngModel)]="selectedValue" (change)="mData(selectedValue)">
+		<option  *ngFor="let modules  of moduleDatas" >{{modules.moduleName}}</option>
+
+	</select>
+
+  Create Feature:<input type="text" [(ngModel)]="featureName">
+  <button (click)="saveFeatureName()">Save</button>
+ 
+</div>

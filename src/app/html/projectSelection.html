@@ -1,0 +1,35 @@
+ <div>
+ 
+
+  
+
+  
+ 
+   
+
+     <div class="well" style="height:650px; ">
+     	
+
+    <!-- <label for="sel1"> -->
+  
+      <h2 style="text-align: center;font-size:30px">Project Selection  </h2>
+ 
+
+ 
+<div class="col-md-6 col-md-offset-3" style="background-color:white;height:400px; border-radius: 25px;" >
+   <br>
+     	<br>
+  <strong style="text-align: center;font-size:20px"> Select Project :</strong> <select  [(ngModel)]="moduleSelected" (change)="dropdownData(moduleSelected)"
+  style="font-size:15px">
+    <option></option>
+      <option *ngFor="let data of datas">{{data.projectSelection}}</option>
+   </select>
+       
+      <router-outlet></router-outlet>
+</div>
+
+
+
+
+
+</div>

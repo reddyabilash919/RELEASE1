@@ -1,0 +1,45 @@
+<div>
+  
+  
+  <app-header></app-header>
+
+  <br><br><br>
+
+  <h2 style="text-align: center;">Import Project</h2>
+
+
+
+     <div class="form-group" style="margin-left: 40px" >
+
+      <div>
+        Select Framework:<select [(ngModel)]="frameworkSelected" (change)="framework(frameworkSelected)">
+    <option ></option>
+  <option >Cuccumber</option>
+  <option >TestNg</option>
+ <option >Cypress</option>
+</select>
+    </div>
+<br><br>
+<!-- <form > -->
+  <div>
+ 
+  <input type="file"  name="file"  (change)="filesPicked($event)" id="files" class="custom-file-input"  webkitdirectory > <button><label for="files" class="custom-file-label">Import Project
+   </label>  </button>
+   <button type="button" (click)="goBackPage()">Back</button>
+
+  </div>
+  
+<!-- </form> -->
+<br>
+<br>
+<br>
+<div style="text-align:center;font-size: 15px">
+{{message}}
+</div>
+<!-- <p>Directory: <input type="file" webkitdirectory mozdirectory /></p> -->
+
+<router-outlet  ></router-outlet>
+
+
+
+</div>

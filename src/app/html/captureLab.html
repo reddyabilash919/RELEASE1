@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+	body{
+	margin-left:13px;
+	/* background-color: cyan; */
+	height: 100%;
+	font-size: 20px;
+	margin-top: 20px;
+
+	}
+	#div3{
+	border: 2px solid black;
+	height: auto;
+	background-color: white;
+	width: auto;
+	/* margin:05px;
+	margin-top: 20px; */
+	}
+	#thead{
+	background-color: gainsboro;
+	}
+	thead, tbody, tr, td, th { display: block; }
+	  tr:after {
+		  content: ' ';
+		  display: block;
+		  clear: both;
+	  }
+	  thead th {
+			width: 8%;
+			float: left;
+	  }
+	  tbody {
+		  height: 150px;
+		  overflow-y: auto;
+		  overflow-x: auto;
+	      }
+	  tbody td {
+		  width: auto;
+		  float: left;
+	  }
+	  .main{
+		border:solid;
+		text-align:center;
+		width: auto;
+		height:auto;
+		font-size:25px;
+	  }
+	  .table tr.selected td {
+		background-color:#123456 !important;
+		color: black;
+      }
+	  /* .selected {
+      background-color: blue;
+	  } */
+	  body[_ngcontent-c2] {
+    margin-left: 13px;
+    /* background-color: lightblue; */
+    height: auto;
+    font-size: 20px;
+    margin-top: 20px;
+	 }
+	 .startLab{
+     width:auto;
+     height:35px;
+     font-size:20px;
+     margin: 5px;
+}
+		</style>
+	
+	
+	
+	<body>
+	<div class="container main">
+			<div class="container" *ngIf="dvc!=true">
+				<div class="col-md-12 col-sm-12 col-xs-12 well">
+				<h1>Welcome to Mobile Labs</h1>
+					<div>
+						<p>
+							Connect Mobile Device through Usb Cabel<br>
+							Start the Lab
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- container -->
+			<!-- welcome 	 -->
+		    <div  class="container" id="div3" *ngIf="dvc==true">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div  class="jumbotron" style="margin-top:5px;"><span style="color:blue;font-weight: bolder">Available Devices</span></div>	
+					<table class="table" style="background-color: white">
+						<thead id="thead">
+							<tr>
+							<th style="width: 100px">Check</th>
+							<th style="width: 280px;text-align: center">Devices Name</th> 
+							<th style="width: 250px;text-align: center">Devices Id</th>
+							<th style="width: 250px;text-align: center">Date</th>
+							<th style="width: 150px;text-align: center">From Time</th>
+							<th style="width: 150px;text-align: center">To Time</th>
+							<th style="width: 150px;text-align: center"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let data of result; let i = index" [class.selected]="data.DevicesId == selectedRownew">
+							<td style="width: 100px">
+							<span *ngIf="blockTdData==true">
+							<input type="checkbox"  style="outline: 2px solid red" [disabled]="blockTdData==true" [class.selected]="blockTdData == true" (click)="setClickedRow(data.DevicesId);checkFun(data.DevicesId,$event.target.checked)">
+							</span>
+							<span *ngIf="blockTdData==false">
+							<input type="checkbox" style="background-color: null" [disabled]="blockTdData==true" [class.selected]="blockTdData == true" (click)="setClickedRow(data.DevicesId);checkFun(data.DevicesId,$event.target.checked)">
+							</span>
+							</td>
+							<td style="width: 280px;text-align: center">{{data.DevicesName}}</td>
+							<td style="width: 250px;">{{data.DevicesId}}</td>
+							<td style="width: 250px;"><input type="date" displayFormat="dd/mm/YYYY"  [(ngModel)]="todaydate" readonly ></td>	
+							<td style="width: 150px;"><input type="time"  atp-time-picker [(ngModel)]="currentTime"   /></td>	
+							<td style="width: 150px;"><input type="time" atp-time-picker [(ngModel)]="toTime" (change)="somethingChanged(currentTime,toTime,data.DevicesId)"/></td>
+							<td style="width: 150px;"><button type="button" [disabled]="blockToTime==true"  class="btn btn-info startLab" (click)="blockDevices(currentTime,toTime,data.DevicesId,data.DevicesName)">Block</button></td>
+							</tr>
+						</tbody>
+					</table>
+					
+			   </div>
+			</div>
+			<!-- class="container" id="div3" *ngIf="dvc==true" -->
+		<button type="button" class="btn btn-primary startLab" (click)="connect()" *ngIf="dvc!=true">Start Lab</button>
+		<div class="pull-left row" *ngIf="dvc==true">
+			<div class="col-md-6 col-sm-6 col-xs-6 pull-left">
+			<!-- <input type="file"  (change)="filesPicked($event)" name="file" id="files" class="custom-file-input"  webkitdirectory mozdirectory msdirectory odirectory directory multiple="multiple"><button><label for="files" class="custom-file-label">Import Project
+				</label>  </button> -->
+			<!-- <input type="file"  (change)="filesPicked($event)"  webkitdirectory> -->
+			<input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+            <button type="button" (click)="upload()">Upload</button>
+			<!-- <input type="file" accept=".apk" (change)="filesPicked($event)">					 -->
+			<!-- <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+          <button type="button" (click)="upload()">Upload</button> -->
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-6 pull-left" *ngIf="dvc==true">
+				<!-- <button type="button" (click)="submit($event)">Upload</button> -->
+				<!-- <p>{{up.progress}}</p> -->
+				<button type="button" class="btn btn-primary" style="font-size: 20px;width:80px;height:35px;margin-top:15px;
+				margin-right:730px"  (click)="installApk()" *ngIf="dvc==true">Install</button>
+			</div>
+			<div [hidden]="blockToTime==false" style="color:blue;position:absolute; left:65%">
+				<span>From Time Should be Equal or Greater than To Time</span>
+			</div>
+		
+		</div>
+		<!-- class="pull-left row" *ngIf="dvc==true" -->
+	</div>
+	<!-- container main -->
+	</body>
+	</html>
+	

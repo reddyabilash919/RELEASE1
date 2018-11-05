@@ -1,0 +1,311 @@
+<body>
+  <nav class="navbar navbar-inverse">
+        <div style="color:aliceblue;">
+          <div class="navbar-header" >
+            <a class="navbar-brand"  style="font-size: 25px">Test Automation Platform</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li style="font-size: 20px;width: 400px;text-align: center;margin-left: 200px;padding: 5px;color: aqua" >{{projectName}}</li>            
+          </ul>
+          <ul class="nav navbar-nav">
+              <li style="font-size: 20px;text-align: center;margin-left: 180px;padding: 5px;color: aqua">Admin</li>            
+            </ul>
+            <ul class="nav navbar-nav">
+                <li style="font-size: 20px;text-align: center;margin-left: 50px;padding: 8px;color: aqua" class="glyphicon glyphicon-log-out" >SignOut</li>            
+              </ul>
+          </div>
+      </nav>
+
+
+
+  
+  
+  <div>
+  
+  
+  
+  <div class="container-fluid" style="width: 100%">
+ 
+  <div class="col-md-10" style="background-color:white;">
+  <div class="a" >
+  <table style="height: 444px">
+  <tr style="position: absolute;margin-left: -15px;width:121%" >
+  <th (click)="changeShowStatus()" class="active"  [style.background-color] = "show==true ? 'green' : 'white'" > Test Planning</th>
+  
+  
+  <th  (click)="showTestExecution(projectName)" class="active" [style.background-color] = "testExecution==true ? 'green' : 'white'" >Test Execution</th>
+  
+  
+  <th (click)="changeShowReport()" class="active"  [style.background-color] = "report==true ? 'green' : 'white'" > Report</th>
+ 
+  </tr>
+  <td *ngIf="show==true" >
+  <div style="margin-top: -175px;position: absolute;margin-left: -15px;width:121%">
+  <table style="width: 33.5%;position: absolute">
+  <!-- <th (click)="goCreateModule()" style="text-align: center;
+  font-size: 15px" [style.background-color] = "displayModule==true ? 'lightblue' : 'white'">CreateModule</th>
+  
+  
+  <th (click)="goCreateFeature()" style="text-align: center;font-size: 15px" [style.background-color] = "displayFeature==true ? 'lightblue' : 'cyan'">CreateFeature</th>
+  
+   -->
+ <th class="mobile" (click)="import()"  [style.background-color] = "displayImport==true ? 'lightblue' : 'white'">Script Import</th>
+  <th class="mobile" (click)="edit()"  [style.background-color] = "ed==true ? 'lightblue' : 'white'">Edit</th>
+  </table><br>
+<div  style="margin-top: 30px">
+      <span style="font-size: 20px;font-weight: bold" *ngIf="ed==true">Select Test Script </span>
+      <span style="font-size: 20px;font-weight: bold;margin-left: 170px" *ngIf="ed==true" >Edit Test Case </span>
+          <div class="container-fluid" *ngIf="ed==true"  >              
+            <div class="col-sm-3 col-md-6 col-lg-3" style="height: 450px;font-size: 20px;border: 1px solid;overflow:auto;" >                
+              <ul style = "list-style-type:none;" *ngFor="let module of moduleName ; let i = index" >
+                      <li  (click)="clickModulee(module,i)">
+                      
+                      <span class="glyphicon glyphicon-folder-open" > {{module.moduleName}} </span>
+                      </li>
+                      <ul *ngIf="i===ind" >
+                          <li style = "list-style-type:none;"  *ngFor="let  feature of modd ; let j=index" (click)="clickFeature(feature,j)" >
+                              <span class="glyphicon glyphicon-folder-open">{{feature.featureName}}
+                              </span>
+                          </li>
+                      </ul>
+                    
+                      </ul> 
+            </div>
+            
+            <div class="col-sm-9 col-md-6 col-lg-9" >
+                
+              <div class="border" style="height: 400px;font-size: 20px">
+                
+                  <div class="table-wrapper-scroll-y">
+
+                      <table class="table table-bordered " >
+                        <thead>
+                          <tr>
+                            <th scope="col">Test Case</th>
+                            <th scope="col">Layor</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Priority</th>
+                            <th scope="col">Time(ms)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let script of feat;let i=index;"   >
+                           
+                            <td  >{{script.scriptName}}</td>
+                            <td>
+                              <select >
+                              
+                              <option >
+                              UI
+                              </option>
+                              <option >
+                                API
+                                </option>
+                                <option >
+                                  DB
+                                  </option>
+                              </select>
+                              </td>
+                            <td>
+                              <select  [(ngModel)]="script.typeName" [value]="nanan" >
+                               
+                                <option *ngFor="let ty of type" >
+                                  {{ty.typeName}}
+                                </option>
+                              </select>
+                            </td>
+                            <td>
+                              <select [(ngModel)]="script.priorityName" >
+                                  
+                                  <option *ngFor="let py of priority"  >
+                                    {{py.priorityName}}
+                                  </option>                                   
+                              </select>
+                            </td>
+                            <td>
+                              
+                              <input [(ngModel)]="script.time">
+                           </td>
+                            
+                          </tr>
+                          
+                        
+                        </tbody>
+                        
+                          
+                      </table>
+                      
+                    </div>
+              </div>
+              
+              <br>
+              <button type="button" class="btn btn-info" (click)=save()  style="font-size: 20px;border-radius:5px;padding: 5px;margin-left: 450px">save</button>
+
+            </div>
+          </div>
+        </div>
+        
+        
+  <!-- <app-module *ngIf="displayModule==true"></app-module>
+  <app-feature *ngIf="displayFeature==true"></app-feature> -->
+  <app-import *ngIf="displayImport==true"></app-import>
+  
+  </div>
+  
+
+  
+  
+  </td>
+
+
+   <td *ngIf="report==true" >
+    <div class="container-fluid" style="margin-top: -160px;position: absolute;width:120%">
+    
+    
+    
+    <div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-2" style="border:1px solid black;font-size:15px;height:500px;overflow:auto;" >
+    Date:<br>
+    <span style="margin-left:20px">From</span><input type="date" displayFormat="dd/mm/YYYY"  [(ngModel)]="from" ><br><br>
+    <span style="margin-left:20px">To</span><input type="date" displayFormat="dd/mm/YYYY" [(ngModel)]="todate" ><br><br>
+    
+    <button type="button" class="btn btn-info"  style="margin-left:20px;margin-top:8px; padding: 10px 20px;
+    font-size: 20px;border-radius:5px;height:40px" (click)="runNumberSearch(from,todate)" >Search</button>
+    
+    <br>
+    <br>
+    
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sl:No</th>
+            <th>Run Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor =" let run of runNumber;let i=index" (click)="fetchRunDetails(run._id.runNumber,i)"
+          [class.active]="i == index1"> 
+            <td>{{i+1}}</td>
+            <td>{{run._id.runNumber}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+
+
+
+
+    </div>
+    
+    
+    
+    <div class="col-sm-8 col-md-8 col-lg-10" style=" font-size:15px;height:700px" >
+    <div class="border" style="height:450px" >
+    <div class="table table-bordered">
+    
+    <thead>
+    <tr>
+    <th>Sl.no</th>
+    <th>ModuleFolder</th>
+    <!-- <th>Module/Subfolder</th> -->
+    <th>FileName</th>
+    <th>ScenarioName</th>
+    <th>TestCases</th>
+    <th>Result</th>
+    <th>Error</th>
+    <th>Screenshots</th>
+    <th>Videos</th>
+    <th>Duration(ms)</th>
+    
+    
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor ="let rept of resulttypes;let i=index">
+        <td>{{i+1}}</td>
+        <td>{{rept.ModuleFolder}}</td>
+        <!-- <td>{{rept.tests}}</td> -->
+        <td>{{rept.FileName}}</td>
+        <td>{{rept.ScenarioName}}</td>
+        <td>{{rept.TestCase}}</td>
+        <td> 
+          <span *ngIf="rept.Result == 'Fail'" style="color:red">{{rept.Result}}</span>
+          <span *ngIf="rept.Result == 'Pass'" style="color:green">{{rept.Result}}</span>
+        </td>
+        <td (click)="showError(rept.Error)">
+            <span *ngIf="rept.Error == undefined" ></span>
+            <span *ngIf="rept.Error !== undefined" >View</span>
+        </td>
+        <td (click)="onNavigate(rept.ScreenShot)">
+            <span *ngIf="rept.ScreenShot == null" ></span>
+            <span *ngIf="rept.ScreenShot !== null" >View</span>
+        </td>
+        <td (click)="onClickVideo(rept.Video)">View</td>
+        <td>{{rept.Duration}}</td>
+        
+        </tr>
+      
+    
+    
+    </tbody>
+    
+    
+    </div> 
+    
+    
+    </div>
+    <button type="button" class="btn btn-info" style="font-size: 20px;border-radius:5px;
+    margin-left:500px;margin-top:10px;padding:5px" (click)="mergeTestLink(resulttypes)" >Merge Test Link</button>
+    
+    
+    </div>
+    
+    </div>
+   
+    </div>
+    </td> 
+
+
+<div style="width: 100%;height: 444px">
+  <tr style="height: 444px">
+  <td *ngIf="testExecution==true">
+  <div style="margin-top: -174px;position: absolute;width: 120%">
+  <table style="width: 33.5%;margin-left: 448px">
+  <th (click)="mobile()" style="text-align: center;font-size: 15px;" [style.background-color] = "mo==true ? 'lightblue' : 'white'">Mobile</th> 
+  
+  <th (click)="execution()" style="text-align: center;font-size: 15px;" [style.background-color] = "execute==true ? 'lightblue' : 'white'">Execution</th>
+  
+  </table>
+  <td *ngIf="mo==true"><app-cap></app-cap></td>
+  <td *ngIf="execute==true"><app-test></app-test> </td>
+  </div>
+ 
+  </td>
+  
+  
+  
+  
+  
+  
+  
+  </tr>
+  
+  
+  </div>
+  <td *ngIf="valid==true" style="text-align:center;font-size: 15px">
+  {{importMessage}}
+  </td>
+  </table>
+  
+  
+  
+  
+  
+  </div>
+  <router-outlet></router-outlet>
+  </div>
+  </div> 
+  </div>
+
+  </body>

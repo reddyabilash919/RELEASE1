@@ -1,0 +1,64 @@
+console.log("llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
+    var data = req.params.ss;
+    //console.log(data);
+    var data_Array = data.split(",");
+    var lineNum = data_Array[0];
+    var featureName = data_Array[1];
+    var projectId = data_Array[2];
+    var projectNamePath = "/"+projectId;
+    console.log(featureName+'.'+lineNum+'.'+projectNamePath);
+
+const Filehound = require('filehound');
+Filehound.create()
+  .ext('java')
+  .match('*TestRunnerNew.java*')  //  .match('*TestRunnerNew.java*')
+  .paths("./uploads/"+projectNamePath)
+  
+  .find((err, htmlFiles) => {
+    if (err) return console.error("handle err", err);
+        console.log(projectNamePath)
+        console.log(featureName+'.'+lineNum);
+   
+    var lineString = "\"Features/"+featureName+".feature:"+lineNum+"\"";
+    console.log(lineString);
+    console.log(htmlFiles);
+    var fs = require('fs');
+    
+    
+        // console.log("execTesttt111111");          
+         var testPath = "./"+htmlFiles; 
+         //console.log(testPath+"testpathhhhhh");
+       
+        var data = fs.readFileSync(testPath).toString().split("\n");
+       //  .split("\n");
+       // console.log(data);
+       
+   
+        //console.log( data[9].includes("@CucumberOptions"))
+        for(i=0;i<data.length;i++)
+        {
+           if( data[i].includes("@CucumberOptions")=== true)
+           {
+               var lineString = "\"Features/"+featureName+".feature:"+lineNum+"\"";
+               data[i] = "@CucumberOptions(features="+"{"+lineString+"},"+"";
+           // console.log(true);
+           }
+        }
+               
+         data = data.join("\n");
+        
+        fs.writeFile(testPath,data,function(err)
+        {
+            if (err) return console.log(err);
+          //  console.log(text);
+            console.log("Replaced");
+
+            execTestRunner( projectNamePath)
+})
+
+   
+     
+
+    //  var stream = fs.createWriteStream(htmlFiles[0]);
+//  stream.once('open', function(fd) {
+    

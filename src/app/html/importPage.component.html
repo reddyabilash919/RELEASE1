@@ -1,0 +1,72 @@
+ 
+<div class="container-fluid">
+<div style="margin-left: -10px;margin-top: 50px;font-size: 20px;height:365px;border:1px solid black;background-color:lavender">
+    <!-- <span>
+            Framework:<select style="height: 25px;width: 150px;" [(ngModel)]="moduleSelected">
+                    <option ></option>
+                    <option >Cypress</option>
+                 </select>
+    </span> -->
+  
+    <br>
+    <br>
+    GitUrl:<input type="text" [(ngModel)]="gitUrl"> 
+    <button (click)="gitClone(gitUrl)"  >GitClone</button>
+    
+    <br>
+    <br>
+   
+    
+   <!-- // {{normalMessage}} -->
+    {{gitMessage}}
+    <br><br>
+   Path To Install Node Modules:<input type="text" [(ngModel)]="npmPath">
+  <button (click)="npmInstall(npmPath)">Install</button>
+<br>
+<br>
+
+
+  {{npmMessage}}
+   <!--  <br>
+   <span style="margin-left: -4px">
+        FeatureName:<select style="height: 25px;width: 150px;margin-left: 1px" [(ngModel)]="featureSelected">
+                <option *ngFor="let feature of features">{{feature.featureName}}</option>
+             </select>
+   </span>
+   <br>
+}
+}
+<br>
+<br>
+   <span style="margin-left: 77px;margin-top: 572px">
+        Type:<select style="height: 25px;width: 150px" [(ngModel)]="typeSelected">
+                <option *ngFor="let type of types">{{type.typeScenario}}</option>
+             </select>
+   </span>
+<br>
+<br>
+<br>
+<span style="margin-left: 55px">
+       Priority:<select style="height: 25px;width: 150px;margin-left: 4px" [(ngModel)]="prioritySelected">
+                <option *ngFor="let priority of priorities">{{priority.priorityScenario}}</option>
+             </select>
+</span>
+   <br>
+   <br>
+   <br>
+<span style="margin-left: -18px;">
+        Estimated Time:<input type="number"  style="width: 150px;" [(ngModel)]="timeGiven">
+        <br><br>
+        scripts:<input type="text" >
+        <br>
+
+        <br>
+      ImportScript:<input type="file" (change)="getfolder($event)">
+</span> -->
+ <br>
+ <span>
+    <button class="btn btn-info" style="font-size:20px;height: 35px;width: 80px;margin-left: 505px" (click)="saveImportData()">Save</button>
+</span>
+ <router-outlet></router-outlet>  
+</div>
+</div>

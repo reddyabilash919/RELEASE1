@@ -1,0 +1,21 @@
+.active{
+
+    /* width: 2000px;  */
+    text-align: center;
+    font-size: 20px;
+}
+
+.mobile{
+    text-align: center;
+    font-size: 20px;
+}
+
+.projectname{
+    font-size: 25px;
+}
+
+.projectdetail{
+    font-size: 35px;
+    text-align:center;
+
+}
